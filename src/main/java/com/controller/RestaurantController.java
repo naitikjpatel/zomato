@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.entity.RestaurantEntity;
 import com.repository.RestaurantRepository;
+import com.service.ServiceImplForRestaurant;
 
 import jakarta.persistence.criteria.CriteriaBuilder.In;
 
@@ -22,6 +23,8 @@ public class RestaurantController {
 	@Autowired
 	RestaurantRepository restaurantRepository;
 	
+	@Autowired
+	ServiceImplForRestaurant service;
 	
 	//get all restaurants
 	@GetMapping("/restaurants")
@@ -48,8 +51,21 @@ public class RestaurantController {
 			return op.get();
 		}
 	}
-	public String getMethodName(@RequestParam String param) {
-		return new String();
+	// Read All Restaurant By Active
+	
+	@GetMapping("/getrestaurantsbyactive/{active}")
+	public List<RestaurantEntity> getResturantsByActive(@PathVariable("active") Integer active){
+		List<RestaurantEntity> list=service.getRestaurantByActive(active);
+		return list;
+		
 	}
 	
+	
+	//get the resturants which match with the pincode and active =1
+	@GetMapping("/getabyactivepincode/{active}/{pincode}")
+	public List<RestaurantEntity> getRestaurantByActiveAndPincode(@PathVariable("active") Integer active,@PathVariable("pincode") Integer pincode){
+		List<RestaurantEntity> list=service.getRestaurantByActiveAndPincode(active, pincode);
+		return list;
+		
+	}
 }

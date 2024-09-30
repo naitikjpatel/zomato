@@ -60,4 +60,7 @@ public class CustomerController {
 	}
 	
 	//updatecustomer profile baki
+	
+	
+
 }

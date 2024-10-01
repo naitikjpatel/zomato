@@ -40,6 +40,18 @@ public class RestaurantController {
 		return entity;
 	}
 	
+	//login restaurant
+	@GetMapping("/restaurantlogin/{email}/{password}")
+	public boolean restaurantLogin(@PathVariable("email") String email,@PathVariable("password") String password) {
+	RestaurantEntity entity=	restaurantRepository.findByEmailAndPassword(email, password);
+	if(entity==null) {
+		return false;
+	}
+	else {
+		return true;
+	}
+	}
+	
 	// Read Restaurant by Id
 	@GetMapping("/getrestaurants/{rid}")
 	public RestaurantEntity getRestaurantsById(@PathVariable("rid") Integer rid) {

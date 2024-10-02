@@ -19,23 +19,23 @@ public class CustomerAddressController {
 
 	@Autowired
 	CustomerAddressRepository customerAddressRepository;
-	
+
 	@Autowired
 	ServiceImplForCustomerAddress service;
-	
+
 	@PostMapping("/customeraddress")
-	public CustomerAddressEntity CustomerAddressAdd(@RequestBody CustomerAddressEntity customerAddressEntity ) {
-		
+	public CustomerAddressEntity CustomerAddressAdd(@RequestBody CustomerAddressEntity customerAddressEntity) {
+
 		customerAddressRepository.save(customerAddressEntity);
 		return customerAddressEntity;
 	}
-	
-	
-	//input : customerId and return the all addresss which have the customerId matched
-	
+
+	// input : customerId and return the all addresss which have the customerId
+	// matched
+
 	@GetMapping("/myaddress/{c_id}")
-	public List<CustomerAddressEntity> getAllAddressByCID(@PathVariable("c_id") Integer customerId){
+	public List<CustomerAddressEntity> getAllAddressByCID(@PathVariable("c_id") Integer customerId) {
 		return service.getCustomerAddressByCID(customerId);
 	}
-	
+
 }

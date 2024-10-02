@@ -12,13 +12,11 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name="customerAddress")
+@Table(name = "customerAddress")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Data
 public class CustomerAddressEntity {
 
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer addressId;
@@ -28,16 +26,14 @@ public class CustomerAddressEntity {
 	Integer pincode;
 	Float latitude;
 	Float longitude;
-	
-	
+
 //	Here we make the realtion between the CustomerAddressEntity and the CustomerEntity where we make the relation 1: m and m:1 
 //	Example : one customer have the multiple Address
-	
-//	Here we want the foreign key
-	
-	@ManyToOne
-	@JoinColumn(name="customerId")
-	CustomerEntity customer;
-	
-}
 
+//	Here we want the foreign key
+
+	@ManyToOne
+	@JoinColumn(name = "customerId")
+	CustomerEntity customer;
+
+}

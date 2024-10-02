@@ -16,14 +16,15 @@ public class CustomerAddressDao {
 
 	@Autowired
 	SessionFactory sf;
-	
-	public List<CustomerAddressEntity> getCustomerAddressByCID(Integer customerId){
-		Session session=sf.openSession();
-		Query addresses=session.createQuery("from CustomerAddressEntity c where c.customerId=: customerId",CustomerAddressEntity.class);
-		addresses.setParameter("customerId",customerId);
-		List<CustomerAddressEntity> list=((org.hibernate.query.Query<CustomerAddressEntity>) addresses).list();
+
+	public List<CustomerAddressEntity> getCustomerAddressByCID(Integer customerId) {
+		Session session = sf.openSession();
+		Query addresses = session.createQuery("from CustomerAddressEntity c where c.customerId=: customerId",
+				CustomerAddressEntity.class);
+		addresses.setParameter("customerId", customerId);
+		List<CustomerAddressEntity> list = ((org.hibernate.query.Query<CustomerAddressEntity>) addresses).list();
 		return list;
-		
+
 	}
-	
+
 }

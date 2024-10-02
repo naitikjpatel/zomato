@@ -19,48 +19,40 @@ public class CustomerController {
 
 	@Autowired
 	CustomerRepository repository;
-	
-	
-	//read all customers
+
+	// read all customers
 	@GetMapping("/customers")
-	public List<CustomerEntity>	getAllCustomers(){
-	List<CustomerEntity>customers=repository.findAll();
-	return customers;
+	public List<CustomerEntity> getAllCustomers() {
+		List<CustomerEntity> customers = repository.findAll();
+		return customers;
 	}
-	
-	
-	//read customer by id
+
+	// read customer by id
 	@GetMapping("/customers/{customerId}")
 	public CustomerEntity getCustomerById(@PathVariable Integer customerId) {
-		Optional<CustomerEntity>op=repository.findById(customerId);
-		if(op.isEmpty()) {
+		Optional<CustomerEntity> op = repository.findById(customerId);
+		if (op.isEmpty()) {
 			return null;
-		}
-		else {
+		} else {
 			return op.get();
 		}
-		
+
 	}
-	
-	
-	
-	//delete customer by id
+
+	// delete customer by id
 	@DeleteMapping("/customer/{customerId}")
 	public CustomerEntity deleteCustomerById(@PathVariable Integer customerId) {
-		Optional<CustomerEntity>op=repository.findById(customerId);
-		
-		if(op.isEmpty()) {
+		Optional<CustomerEntity> op = repository.findById(customerId);
+
+		if (op.isEmpty()) {
 			return null;
-		}
-		else {
-			CustomerEntity entity=op.get();
+		} else {
+			CustomerEntity entity = op.get();
 			repository.deleteById(customerId);
 			return entity;
 		}
 	}
-	
-	//updatecustomer profile baki
-	
-	
+
+	// updatecustomer profile baki
 
 }
